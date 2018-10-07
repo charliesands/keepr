@@ -7,21 +7,21 @@ namespace keepr.Models
     public int Id { get; set; }
 
     [Required]
-    [MinLength(20)]
+    [MaxLength(20)]
     public string Name { get; set; }
     //required?
     [Required]
     public string Description { get; set; }
 
     // [Required]  
-    public string UserID { get; set; }
+    public string UserId { get; set; }
     ///Id or ID????
 
     public Vault(string name, string description, string userid)
     {
       Name = name;
       Description = description;
-      UserID = userid;
+      UserId = userid;
     }
     public Vault() { }
   }

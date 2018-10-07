@@ -8,31 +8,31 @@ namespace keepr.Controllers
   [Route("api/[controller]")]
   [ApiController]
 
-  public class VaultsController : Controller
+  public class KeepsController : Controller
   {
-    VaultsRepository _repo;
-    public VaultsController(VaultsRepository repo)
+    KeepsRepository _repo;
+    public KeepsController(KeepsRepository repo)
     {
       _repo = repo;
     }
 
     [HttpGet]
-    public IEnumerable<Vault> Get()
+    public IEnumerable<Keep> Get()
     {
       return _repo.GetAll();
     }
 
     // [Authorize] do I want this?
     [HttpPost]
-    public Vault Post([FromBody] Vault vault)
+    public Keep Post([FromBody] Keep keep)
     {
       if (ModelState.IsValid)
       {
-        vault = new Vault(vault.Name, vault.Description, vault.UserId);
-        return _repo.Create(vault);
+        keep = new Keep(keep.Name, keep.Description);
+        return _repo.Create(keep);
         /// need Username?
       }
-      throw new System.Exception("Invalid Vault");
+      throw new System.Exception("Invalid Keep");
     }
 
   }

@@ -29,7 +29,11 @@ namespace keepr.Models
 
     public int Keeps { get; set; }
 
-
+    public Keep(string name, string description)
+    {
+      Name = name;
+      Description = description;
+    }
 
 
 
