@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Dapper;
+using keepr.Models;
 
 namespace keepr.Repositories
 {
@@ -13,10 +14,10 @@ namespace keepr.Repositories
       _db = db;
     }
 
-    //GET ALL KEEPS
-    // public IEnumerable<Keep> GetAll()
-    // {
-    //   return _db.Query<Keep>("SELECT * FROM keeps;")
-    // }
+    // GET ALL KEEPS
+    public IEnumerable<Keep> GetAll()
+    {
+      return _db.Query<Keep>("SELECT * FROM keeps;");
+    }
   }
 }
