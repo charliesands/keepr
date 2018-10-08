@@ -34,7 +34,7 @@ namespace keepr.Repositories
     {
       int id = _db.ExecuteScalar<int>(@"
       INSERT INTO vaults (name, description, userid)
-      VALUES (@Name, @Description, @UserID);
+      VALUES (@Name, @Description, @UserId);
       SELECT LAST_INSERT_ID();", vault
       );
       ///UserId or UserID?????? line 36

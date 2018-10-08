@@ -34,11 +34,9 @@
     },
     methods: {
       addVault() {
-        debugger
-        let userId = this.user.id
+        this.newVault.userId = this.user.id
         this.$store.dispatch("addVault", this.newVault);
         this.newVault = { name: "", description: "", userId: "" };
-        debugger
       }
     }
   };
