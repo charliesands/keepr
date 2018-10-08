@@ -15,16 +15,20 @@
             <p v-if="loginForm">No account Click to Register</p>
             <p v-else>Already have an account click to Login</p>
         </div>
-        <div v-for="keep in keeps" :key="keep._id">
-            <!-- <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link> -->
-            <div>
-                <img :src="keep.img">
+        <div class="container-fluid">
+            <div class="row">
+                <div v-for="keep in keeps" :key="keep._id" class="col-3">
+                    <!-- <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link> -->
+                    <div>
+                        <img :src="keep.img">
+                    </div>
+                    <div>
+                        {{keep.name}}- {{keep.description}}
+                        {{keep.name}}- {{keep.description}}
+                    </div>
+                    <!-- <button class="btn-danger" @click="deleteBoard(board._id)">Delete Board</button> -->
+                </div>
             </div>
-            <div>
-                {{keep.name}}- {{keep.description}}
-                {{keep.name}}- {{keep.description}}
-            </div>
-            <!-- <button class="btn-danger" @click="deleteBoard(board._id)">Delete Board</button> -->
         </div>
     </div>
 </template>

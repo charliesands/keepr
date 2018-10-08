@@ -30,7 +30,6 @@ namespace keepr.Controllers
       {
         vaultkeep = new VaultKeep(vaultkeep.VaultId, vaultkeep.KeepId, vaultkeep.UserId);
         return _repo.Create(vaultkeep);
-        /// need Username?
       }
       throw new System.Exception("Invalid VaultKeep");
     }
