@@ -40,5 +40,28 @@ namespace keepr.Repositories
       keep.Id = id;
       return keep;
     }
+
+    //UPDATE KEEP
+    public Keep Update(Keep keep)
+    {
+      _db.Execute(@"
+      UPDATE keeps SET (name, description) 
+      VALUES (@Name, @Description)
+      WHERE id = @Id
+      ", keep);
+      return keep;
+    }
+
+    //DELETE KEEP
+    public Keep Delete(Keep keep)
+    {
+      _db.Execute("DELETE FROM keeps WHERE id = @Id", keep);
+      return keep;
+    }
+
+    public int Delete(int id)
+    {
+      return _db.Execute("DELETE FROM keeps WHERE id = @id", new { id });
+    }
   }
 }
