@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <h1>Welcome Home</h1>
+    <button class="btn-danger" @click="logout">Logout</button>
+
     <form @submit.prevent="addVault">
       <input type="text" placeholder="Name" v-model="newVault.name" required>
       <input type="text" placeholder="Description" v-model="newVault.description">
@@ -58,6 +60,9 @@
       },
     },
     methods: {
+      logout() {
+        this.$store.dispatch("logout")
+      },
       addVault() {
         this.newVault.userId = this.user.id
         this.$store.dispatch("addVault", this.newVault);

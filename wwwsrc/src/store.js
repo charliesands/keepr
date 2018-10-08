@@ -27,6 +27,10 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user = user
     },
+    logout(state, user) {
+      state.user = {}
+      router.push({ name: 'login' })
+    },
     setVaults(state, vaults) {
       state.vaults = vaults
     },
@@ -65,6 +69,14 @@ export default new Vuex.Store({
           console.log('Login Failed')
         })
     },
+    logout({ commit, dispatch }) {
+      auth.delete('logout')
+        .then(res => {
+          commit('logout')
+          router.push({ name: 'login' })
+        })
+    },
+
     //VAULTS
     getVaults({ commit, dispatch }) {
       api.get('vaults')
