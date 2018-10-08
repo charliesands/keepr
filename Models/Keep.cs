@@ -19,16 +19,16 @@ namespace keepr.Models
     public string Description { get; set; }
 
     public string UserId { get; set; }
-
+    [Required]
     public string Img { get; set; }
 
-    public bool IsPrivate { get; set; } = false;
+    public int IsPrivate { get; set; }
 
-    public int Views { get; set; } = 0;  //= 0 will work?????
+    public int Views { get; set; }
 
-    public int Shares { get; set; } = 0;
+    public int Shares { get; set; }
 
-    public int Keeps { get; set; } = 0;
+    public int Keeps { get; set; }
 
     public Keep(string name, string description, string img, string userid)
     {
@@ -36,7 +36,13 @@ namespace keepr.Models
       Description = description;
       Img = img;
       UserId = userid;
+      IsPrivate = 0;
     }
+
+    public Keep()
+    {
+    }
+
 
 
 

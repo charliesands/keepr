@@ -13,6 +13,12 @@
 
       <button class="btn-success" type="submit">Create Keep</button>
     </form>
+    <div v-for="keep in keeps" :key="keep._id">
+      <!-- <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link> -->
+      <img :src="keep.img">
+      {{keep.name}}- {{keep.description}}
+      <!-- <button class="btn-danger" @click="deleteBoard(board._id)">Delete Board</button> -->
+    </div>
   </div>
 </template>
 
@@ -24,6 +30,9 @@
       if (!this.$store.state.user.id) {
         this.$router.push({ name: "login" });
       }
+    },
+    mounted() {
+      this.$store.dispatch("getKeeps");
     },
     data() {
       return {
@@ -43,7 +52,10 @@
     computed: {
       user() {
         return this.$store.state.user;
-      }
+      },
+      keeps() {
+        return this.$store.state.keeps;
+      },
     },
     methods: {
       addVault() {

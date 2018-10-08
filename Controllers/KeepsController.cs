@@ -28,8 +28,8 @@ namespace keepr.Controllers
     {
       if (ModelState.IsValid)
       {
-        keep = new Keep(keep.Name, keep.Description, keep.Img, keep.UserId);
-        return _repo.Create(keep);
+        Keep newKeep = new Keep(keep.Name, keep.Description, keep.Img, keep.UserId);
+        return _repo.Create(newKeep);
         /// need Username?
       }
       throw new System.Exception("Invalid Keep");

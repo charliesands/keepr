@@ -32,8 +32,8 @@ namespace keepr.Repositories
     public Keep Create(Keep keep)
     {
       int id = _db.ExecuteScalar<int>(@"
-      INSERT INTO keeps (name, description, img)
-      VALUES (@Name, @Description, @Img);
+      INSERT INTO keeps (name, description, img, userid, isPrivate)
+      VALUES (@Name, @Description, @Img, @UserId, @isPrivate);
       SELECT LAST_INSERT_ID();", keep
       );
       ///UserId or UserID?????? line 36
