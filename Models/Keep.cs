@@ -12,27 +12,30 @@ namespace keepr.Models
   public class Keep
 
   {
+    public int Id { get; set; }
     [Required]
     public string Name { get; set; }
     [Required]
     public string Description { get; set; }
 
-    public int Id { get; set; }
-
-    public bool IsPrivate { get; set; } = false;
+    public string UserId { get; set; }
 
     public string Img { get; set; }
 
-    public int Views { get; set; }
+    public bool IsPrivate { get; set; } = false;
 
-    public int Shares { get; set; }
+    public int Views { get; set; } = 0;  //= 0 will work?????
 
-    public int Keeps { get; set; }
+    public int Shares { get; set; } = 0;
 
-    public Keep(string name, string description)
+    public int Keeps { get; set; } = 0;
+
+    public Keep(string name, string description, string img, string userid)
     {
       Name = name;
       Description = description;
+      Img = img;
+      UserId = userid;
     }
 
 

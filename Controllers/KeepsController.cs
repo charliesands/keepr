@@ -28,7 +28,7 @@ namespace keepr.Controllers
     {
       if (ModelState.IsValid)
       {
-        keep = new Keep(keep.Name, keep.Description);
+        keep = new Keep(keep.Name, keep.Description, keep.Img, keep.UserId);
         return _repo.Create(keep);
         /// need Username?
       }

@@ -6,6 +6,13 @@
       <input type="text" placeholder="Description" v-model="newVault.description">
       <button class="btn-success" type="submit">Create Vault</button>
     </form>
+    <form @submit.prevent="addKeep">
+      <input type="text" placeholder="Name" v-model="newKeep.name" required>
+      <input type="text" placeholder="Description" v-model="newKeep.description">
+      <input type="text" placeholder="Image URL" v-model="newKeep.img">
+
+      <button class="btn-success" type="submit">Create Keep</button>
+    </form>
   </div>
 </template>
 
@@ -24,6 +31,12 @@
           name: "",
           description: "",
           userId: ""
+        },
+        newKeep: {
+          name: "",
+          description: "",
+          img: "",
+          userId: ""
         }
       };
     },
@@ -37,6 +50,11 @@
         this.newVault.userId = this.user.id
         this.$store.dispatch("addVault", this.newVault);
         this.newVault = { name: "", description: "", userId: "" };
+      },
+      addKeep() {
+        this.newKeep.userId = this.user.id
+        this.$store.dispatch("addKeep", this.newKeep);
+        this.newKeep = { name: "", description: "", img: "", userId: "" };
       }
     }
   };
