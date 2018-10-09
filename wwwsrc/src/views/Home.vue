@@ -31,12 +31,13 @@
           <button>Shares</button>
           <button>Views</button>
           <button>Keeps</button>
-          <form @submit.prevent="">
-            <select name="chosen">
-              <option v-for="vault in vaults" :key="vault._id">{{vault.name}}</option>
+          <form @submit.prevent>
+            <select v-model="chosen">
+              <option diabled value="">Choose Vault</option>
+              <option v-for="vault in vaults" v-bind:value="vault.id">{{vault.name}}</option>
             </select>
             <br><br>
-            <input type="submit" @click="addVaultKeep">
+            <input type="submit" @click="addVaultKeep(keep)">
           </form>
           <!-- <button class="btn-danger" @click="deleteBoard(board._id)">Delete Board</button> -->
         </div>
@@ -80,7 +81,8 @@
           vaultId: "",
           keepId: "",
           userId: ""
-        }
+        },
+        chosen: ""
       };
     },
     computed: {
@@ -112,13 +114,13 @@
         this.newKeep = { name: "", description: "", img: "", userId: "" };
       },
       addVaultKeep(keep) {
-        debugger
+        keep.keeps++
         this.newVaultKeep.userId = this.user.id
-        this.newVaultKeep.keepId =   //how to access???
-          this.newVaultKeep.vaultId =
-          this.$store.dispatch("addVaultKeep", this.newVaultKeep);
+        this.newVaultKeep.keepId = keep.id
+        this.newVaultKeep.vaultId = this.chosen
+        this.$store.dispatch("addVaultKeep", this.newVaultKeep);
         // this.newKeep = { name: "", description: "", img: "", userId: "" };
-        debugger
+
       }
     }
   };

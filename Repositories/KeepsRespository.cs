@@ -36,7 +36,6 @@ namespace keepr.Repositories
       VALUES (@Name, @Description, @Img, @UserId, @isPrivate);
       SELECT LAST_INSERT_ID();", keep
       );
-      ///UserId or UserID?????? line 36
       keep.Id = id;
       return keep;
     }
