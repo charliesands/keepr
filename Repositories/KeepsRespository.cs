@@ -41,16 +41,26 @@ namespace keepr.Repositories
     }
 
     //UPDATE KEEP
-    public Keep Update(Keep keep)
+    public Keep Update(int id, Keep keep)
     {
       _db.Execute(@"
-      UPDATE keeps SET (name, description) 
-      VALUES (@Name, @Description)
-      WHERE id = @Id
+    UPDATE keeps SET (name, description, userid, img, isPrivate, views, shares, keeps)
+    VALUES (@Name, @Description, @UserId, @Img, @IsPrivate, @Views, @Shares, @Keeps)
+    WHERE id = @Id
       ", keep);
       return keep;
     }
 
+    // UPDATE vaults SET 
+    //       name = @Name, 
+    //       description = @Description,
+    //       userid = @UserId,
+    //       img = @Img
+    //       isPrivate = @IsPrivate,
+    //       views = @Views,
+    //       shares = @Shares,
+    //       keeps = @Keeps
+    //       WHERE id = @Id
     //DELETE KEEP
     public Keep Delete(Keep keep)
     {

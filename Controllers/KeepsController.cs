@@ -35,5 +35,12 @@ namespace keepr.Controllers
       throw new System.Exception("Invalid Keep");
     }
 
+    [HttpPut("{id}")]
+    // [Authorize]
+    public Keep Update(int id, [FromBody]Keep keep)
+    {
+      return _repo.Update(id, keep);
+    }
+
   }
 }

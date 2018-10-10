@@ -114,11 +114,14 @@
         this.newKeep = { name: "", description: "", img: "", userId: "" };
       },
       addVaultKeep(keep) {
+        debugger
         keep.keeps++
+        this.$store.dispatch("updateKeep", keep)
         this.newVaultKeep.userId = this.user.id
         this.newVaultKeep.keepId = keep.id
         this.newVaultKeep.vaultId = this.chosen
         this.$store.dispatch("addVaultKeep", this.newVaultKeep);
+        debugger
         // this.newKeep = { name: "", description: "", img: "", userId: "" };
 
       }
