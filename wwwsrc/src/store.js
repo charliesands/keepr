@@ -82,8 +82,8 @@ export default new Vuex.Store({
     },
 
     //VAULTS
-    getVaults({ commit, dispatch }) {
-      api.get('vaults')
+    getUserVaults({ commit, dispatch }, userId) {
+      api.get('vaults', userId)
         .then(res => {
           commit('setVaults', res.data)
         })
@@ -123,7 +123,7 @@ export default new Vuex.Store({
         })
     },
     updateKeep({ commit, dispatch }, keep) {
-      api.put('keeps/' + keep.id, keep)
+      api.put('keeps', keep)
         .then(res => {
           dispatch('getKeeps')
         })

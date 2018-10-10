@@ -22,6 +22,12 @@ namespace keepr.Controllers
       return _repo.GetAll();
     }
 
+    [HttpGet("{userId}")]
+    public IEnumerable<Vault> GetAllByUserId(string userId)
+    {
+      return _repo.GetUserVaults(userId);
+
+    }
     // [Authorize] do I want this?
     [HttpPost]
     public Vault Post([FromBody] Vault vault)

@@ -19,7 +19,7 @@
       <div class="row">
         <div v-for="keep in keeps" :key="keep._id" class="col-3">
           <!-- <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link> -->
-          <div>
+          <div @click="viewKeep(keep)" data-toggle="modal" data-target="#exampleModal">
             <img :src="keep.img">
           </div>
           <div>
@@ -28,13 +28,36 @@
           <div>
             shares:{{keep.shares}}views:{{keep.views}}keeps:{{keep.keeps}}
           </div>
-          <button>Shares</button>
-          <button>Views</button>
+          <button @click="addShare(keep)">Shares</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" @click="viewKeep(keep)">Views</button>
           <button>Keeps</button>
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">{{keep.name}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  {{keep.description}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
           <form @submit.prevent>
             <select v-model="chosen">
               <option diabled value="">Choose Vault</option>
-              <option v-for="vault in vaults" v-bind:value="vault.id">{{vault.name}}</option>
+              <option v-for="vault in vaults" v-bind:value="vault.userId">{{vault.name}}</option>
             </select>
             <br><br>
             <input type="submit" @click="addVaultKeep(keep)">
@@ -62,7 +85,7 @@
       this.$store.dispatch("getVaultKeeps");
     },
     mounted() {
-      this.$store.dispatch("getVaults");
+      this.$store.dispatch("getUserVaults");
     },
     data() {
       return {
@@ -114,16 +137,21 @@
         this.newKeep = { name: "", description: "", img: "", userId: "" };
       },
       addVaultKeep(keep) {
-        debugger
         keep.keeps++
         this.$store.dispatch("updateKeep", keep)
         this.newVaultKeep.userId = this.user.id
         this.newVaultKeep.keepId = keep.id
         this.newVaultKeep.vaultId = this.chosen
         this.$store.dispatch("addVaultKeep", this.newVaultKeep);
-        debugger
         // this.newKeep = { name: "", description: "", img: "", userId: "" };
-
+      },
+      addShare(keep) {
+        keep.shares++
+        this.$store.dispatch("updateKeep", keep)
+      },
+      viewKeep(keep) {
+        keep.views++
+        this.$store.dispatch("updateKeep", keep)
       }
     }
   };

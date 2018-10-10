@@ -10,13 +10,13 @@ namespace keepr.Models
 
   {
     public int Id { get; set; }
-    [Required]
+    // [Required]
     public string Name { get; set; }
-    [Required]
+    // [Required]
     public string Description { get; set; }
 
     public string UserId { get; set; }
-    [Required]
+    // [Required]
     public string Img { get; set; }
 
     public int IsPrivate { get; set; }
