@@ -48,7 +48,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Register</button>
+                        <!-- <button type="button" class="btn btn-primary">Register</button> -->
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             <div class="row">
                 <div v-for="keep in keeps" :key="keep._id" class="col-3">
                     <!-- <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link> -->
-                    <div>
+                    <div @click="viewKeep(keep)" data-toggle="modal" :data-target="'#keep'+keep.id">
                         <img :src="keep.img">
                     </div>
                     <div>
@@ -82,11 +82,36 @@
                     <div>
                         shares:{{keep.shares}}views:{{keep.views}}keeps:{{keep.keeps}}
                     </div>
-                    <button @click="addShare(keep)">Shares</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                    <button type="button" class="btn btn-primary" @click="addShare(keep)">Shares</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#keep'+keep.id"
                         @click="viewKeep(keep)">Views</button>
-                    <button>Keeps</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal"
+                        data-backdrop="false">Keeps</button>
                     <!-- <button class="btn-danger" @click="deleteBoard(board._id)">Delete Board</button> -->
+                    <div class="modal fade" :id="'keep'+keep.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{keep.name}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <img :src="keep.img">
+                                    </div>
+                                    <div>
+                                        {{keep.description}}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

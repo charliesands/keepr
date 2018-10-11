@@ -28,9 +28,9 @@
           <div>
             shares:{{keep.shares}}views:{{keep.views}}keeps:{{keep.keeps}}
           </div>
-          <button @click="addShare(keep)">Shares</button>
+          <button type="button" class="btn btn-primary" @click="addShare(keep)">Shares</button>
           <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#keep'+keep.id" @click="viewKeep(keep)">Views</button>
-          <button>Keeps</button>
+          <button type="button" class="btn btn-primary">Keeps</button>
 
           <div class="modal fade" :id="'keep'+keep.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -43,7 +43,12 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  {{keep.description}}
+                  <div>
+                    <img :src="keep.img">
+                  </div>
+                  <div>
+                    {{keep.description}}
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -57,7 +62,7 @@
           <form @submit.prevent>
             <select v-model="chosen">
               <option diabled value="">Choose Vault</option>
-              <option v-for="vault in vaults" v-bind:value="vault.userId">{{vault.name}}</option>
+              <option v-for="vault in vaults" v-bind:value="vault.id">{{vault.name}}</option>
             </select>
             <br><br>
             <input type="submit" @click="addVaultKeep(keep)">
@@ -137,6 +142,7 @@
         this.newKeep = { name: "", description: "", img: "", userId: "" };
       },
       addVaultKeep(keep) {
+        debugger
         keep.keeps++
         this.$store.dispatch("updateKeep", keep)
         this.newVaultKeep.userId = this.user.id
@@ -144,6 +150,7 @@
         this.newVaultKeep.vaultId = this.chosen
         this.$store.dispatch("addVaultKeep", this.newVaultKeep);
         // this.newKeep = { name: "", description: "", img: "", userId: "" };
+        debugger
       },
       addShare(keep) {
         keep.shares++
