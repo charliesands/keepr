@@ -16,16 +16,18 @@ namespace keepr.Controllers
       _repo = repo;
     }
 
-    [HttpGet]
-    public IEnumerable<Vault> Get()
-    {
-      return _repo.GetAll();
-    }
+    // [HttpGet]
+    // public IEnumerable<Vault> Get()
+    // {
+    //   return _repo.GetAll();
+    // }
 
-    [HttpGet("{userId}")]
-    public IEnumerable<Vault> GetAllByUserId(string userId)
+    [HttpGet]
+    public IEnumerable<Vault> GetAllByUserId()
     {
-      return _repo.GetUserVaults(userId);
+      var userId = HttpContext.User.Identity.Name;
+      var vaults = _repo.GetUserVaults(userId);
+      return vaults;
 
     }
     // [Authorize] do I want this?

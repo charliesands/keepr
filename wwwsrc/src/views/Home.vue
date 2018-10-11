@@ -19,7 +19,7 @@
       <div class="row">
         <div v-for="keep in keeps" :key="keep._id" class="col-3">
           <!-- <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link> -->
-          <div @click="viewKeep(keep)" data-toggle="modal" data-target="#exampleModal">
+          <div @click="viewKeep(keep)" data-toggle="modal" :data-target="'#keep'+keep.id">
             <img :src="keep.img">
           </div>
           <div>
@@ -29,10 +29,10 @@
             shares:{{keep.shares}}views:{{keep.views}}keeps:{{keep.keeps}}
           </div>
           <button @click="addShare(keep)">Shares</button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" @click="viewKeep(keep)">Views</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#keep'+keep.id" @click="viewKeep(keep)">Views</button>
           <button>Keeps</button>
 
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          <div class="modal fade" :id="'keep'+keep.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">

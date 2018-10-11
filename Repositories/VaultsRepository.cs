@@ -30,7 +30,7 @@ namespace keepr.Repositories
 
     public IEnumerable<Vault> GetUserVaults(string userId)
     {
-      return _db.Query<Vault>("SELECT * FROM vaults WHERE userId=@userId", new { userId });
+      return _db.Query<Vault>("SELECT * FROM vaults WHERE userId = @UserId", new { userId });
     }
 
     //CREATE VAULT
