@@ -22,6 +22,13 @@ namespace keepr.Controllers
       return _repo.GetAll();
     }
 
+    [HttpGet("{id}")]
+
+    public IEnumerable<Keep> GetVaultKeeps([FromRoute] int vaultId)
+    {
+      return _repo.GetVaultKeeps(vaultId);
+    }
+
     // [Authorize] do I want this?
     [HttpPost]
     public VaultKeep Post([FromBody] VaultKeep vaultkeep)

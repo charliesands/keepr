@@ -142,6 +142,15 @@
                 }
             };
         },
+        mounted() {
+            this.$store.dispatch("getKeeps");
+        },
+        mounted() {
+            this.$store.dispatch("getVaultKeeps");
+        },
+        mounted() {
+            this.$store.dispatch("getUserVaults");
+        },
         computed: {
             keeps() {
                 return this.$store.state.keeps;
