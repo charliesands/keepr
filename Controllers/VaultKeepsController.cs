@@ -22,7 +22,7 @@ namespace keepr.Controllers
       return _repo.GetAll();
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{vaultId}")]
 
     public IEnumerable<Keep> GetVaultKeeps([FromRoute] int vaultId)
     {

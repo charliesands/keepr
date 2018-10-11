@@ -2,6 +2,7 @@
   <div class="home">
     <h1>Welcome Home</h1>
     <button class="btn-danger" @click="logout">Logout</button>
+    <router-link :to="{name: 'dashboard'}"><button class="btn btn-info">Dashboard</button></router-link>
 
     <form @submit.prevent="addVault">
       <input type="text" placeholder="Name" v-model="newVault.name" required>

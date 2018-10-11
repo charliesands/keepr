@@ -1,13 +1,22 @@
 <template>
   <div class="dashboard">
-    <h1>Hello?</h1>
-    <form @submit.prevent>
-      <select v-model="chosen">
-        <option diabled value="">Choose Vault</option>
-        <option v-for="vault in vaults" v-bind:value="vault.id">{{vault.name}}</option>
-      </select>
-      <input type="submit" @click="getVaultKeeps(chosen)">
-    </form>
+    <div>
+      <h1>Hello?</h1>
+    </div>
+    <div>
+      <form @submit.prevent>
+        <select v-model="chosen">
+          <option diabled value="">Choose Vault</option>
+          <option v-for="vault in vaults" v-bind:value="vault.id">{{vault.name}}</option>
+        </select>
+        <input type="submit" @click="getVaultKeeps(chosen)">
+      </form>
+    </div>
+    <div>show please</div>
+
+    <div v-for="vk in vaultKeeps" :key="vk._id" class="col-3">
+      hello ?? {{vk.name}} {{vk.description}}
+    </div>
 
   </div>
 </template>
@@ -36,7 +45,6 @@
     },
     methods: {
       getVaultKeeps(vault) {
-        debugger
         this.$store.dispatch('getVaultKeeps', vault)
       }
     }
