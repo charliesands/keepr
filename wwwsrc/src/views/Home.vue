@@ -24,14 +24,14 @@
             <img :src="keep.img">
           </div>
           <div>
-            {{keep.name}}- {{keep.description}}
+            <h3> {{keep.name}}</h3>
           </div>
           <div>
             shares:{{keep.shares}}views:{{keep.views}}keeps:{{keep.keeps}}
           </div>
-          <button type="button" class="btn btn-primary" @click="addShare(keep)">Shares</button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#keep'+keep.id" @click="viewKeep(keep)">Views</button>
-          <button type="button" class="btn btn-primary">Keeps</button>
+          <button type="button" class="btn btn-primary" @click="addShare(keep)">Share</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#keep'+keep.id" @click="viewKeep(keep)">View</button>
+          <!-- <button type="button" class="btn btn-primary">Keep</button> -->
 
           <div class="modal fade" :id="'keep'+keep.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

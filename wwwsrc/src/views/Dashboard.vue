@@ -83,11 +83,11 @@
         this.$store.dispatch('getVaultKeeps', vault)
       },
       addShare(vk) {
-        keep.shares++
+        vk.shares++
         this.$store.dispatch("updateKeep", vk)
       },
       viewKeep(vk) {
-        keep.views++
+        vk.views++
         this.$store.dispatch("updateKeep", vk)
       }
     }
