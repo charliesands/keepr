@@ -1,5 +1,22 @@
 <template>
   <div class="home">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">myKeepr</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button class="btn-danger" @click="logout">Logout</button>
+          </li>
+          <!-- <li class="nav-item">
+                      <a class="nav-link" href="#">Register</a>
+                  </li> -->
+        </ul>
+      </div>
+    </nav>
     <h1>Welcome Home</h1>
     <button class="btn-danger" @click="logout">Logout</button>
     <router-link :to="{name: 'dashboard'}"><button class="btn btn-info">Dashboard</button></router-link>
@@ -66,8 +83,7 @@
               <option diabled value="">Choose Vault</option>
               <option v-for="vault in vaults" v-bind:value="vault.id">{{vault.name}}</option>
             </select>
-            <br><br>
-            <input type="submit" @click="addVaultKeep(keep)">
+            <button class="btn btn-primary m-1" type="submit" @click="addVaultKeep(keep)">Add to Vault</button>
           </form>
           <!-- <button class="btn-danger" @click="deleteBoard(board._id)">Delete Board</button> -->
         </div>
@@ -163,6 +179,7 @@
         this.$store.dispatch("updateKeep", keep)
       },
       deleteKeep(keep) {
+        debugger
         if (keep.userId == this.user.id) {
           this.$store.dispatch("deleteKeep", keep);
         }

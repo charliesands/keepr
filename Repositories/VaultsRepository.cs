@@ -59,11 +59,11 @@ namespace keepr.Repositories
     }
 
     //DELETE VAULT
-    public Vault Delete(Vault vault)
-    {
-      _db.Execute("DELETE FROM vaults WHERE id = @Id", vault);
-      return vault;
-    }
+    // public Vault Delete(Vault vault)
+    // {
+    //   _db.Execute("DELETE FROM vaults WHERE id = @Id", vault);
+    //   return vault;
+    // }
 
     public int Delete(int id)
     {

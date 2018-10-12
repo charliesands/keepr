@@ -94,6 +94,12 @@ export default new Vuex.Store({
           dispatch('getUserVaults')
         })
     },
+    deleteVault({ dispatch }, vaultData) {
+      api.delete('vaults/' + vaultData)
+        .then(res => {
+          dispatch('getUserVaults')
+        })
+    },
 
     //KEEPS
     getKeeps({ commit, dispatch }) {

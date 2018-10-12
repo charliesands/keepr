@@ -1,5 +1,22 @@
 <template>
   <div class="dashboard container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">myKeepr</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button class="btn-danger" @click="logout">Logout</button>
+          </li>
+          <!-- <li class="nav-item">
+                          <a class="nav-link" href="#">Register</a>
+                      </li> -->
+        </ul>
+      </div>
+    </nav>
     <div>
       <h1>Dashboard</h1>
     </div>
@@ -9,7 +26,8 @@
           <option diabled value="">Choose Vault</option>
           <option v-for="vault in vaults" v-bind:value="vault.id">{{vault.name}}</option>
         </select>
-        <input type="submit" @click="getVaultKeeps(chosen)">
+        <button type="submit" @click="getVaultKeeps(chosen)">View</button>
+        <button type="submit" @click="deleteVault(chosen)">Delete</button>
       </form>
     </div>
     <div class="row">
@@ -89,6 +107,12 @@
       viewKeep(vk) {
         vk.views++
         this.$store.dispatch("updateKeep", vk)
+      },
+      deleteVault(vault) {
+        this.$store.dispatch("deleteVault", vault)
+      },
+      logout() {
+        this.$store.dispatch("logout")
       }
     }
   }

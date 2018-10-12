@@ -43,5 +43,10 @@ namespace keepr.Controllers
       throw new System.Exception("Invalid Vault");
     }
 
+    [HttpDelete("{id}")]
+    public void Delete(int id)
+    {
+      _repo.Delete(id);
+    }
   }
 }
