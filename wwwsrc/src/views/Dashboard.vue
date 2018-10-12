@@ -44,6 +44,8 @@
         <button type="button" class="btn btn-primary" @click="addShare(vk)">Share</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#vk'+vk.id" @click="viewKeep(vk)">View</button>
         <!-- <button type="button" class="btn btn-primary">Keeps</button> -->
+        <button type="button" class="btn btn-danger" @click="deleteVaultKeep(vk)">Remove</button>
+
 
         <div class="modal fade" :id="'vk'+vk.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
@@ -82,6 +84,9 @@
         chosen: ""
       }
     },
+    mounted() {
+      this.$store.dispatch("getVaultKeeps");
+    },
     computed: {
       user() {
         return this.$store.state.user;
@@ -113,6 +118,10 @@
       },
       logout() {
         this.$store.dispatch("logout")
+      },
+      deleteVaultKeep(vk) {
+        debugger
+        this.$store.dispatch("deleteVaultKeep", vk.id)
       }
     }
   }
