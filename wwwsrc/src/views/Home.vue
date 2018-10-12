@@ -32,6 +32,7 @@
           <button type="button" class="btn btn-primary" @click="addShare(keep)">Share</button>
           <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#keep'+keep.id" @click="viewKeep(keep)">View</button>
           <!-- <button type="button" class="btn btn-primary">Keep</button> -->
+          <button v-if="user.id == keep.userId" class="btn btn-danger" @click="deleteKeep(keep)">Delete</button>
 
           <div class="modal fade" :id="'keep'+keep.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -160,6 +161,11 @@
       viewKeep(keep) {
         keep.views++
         this.$store.dispatch("updateKeep", keep)
+      },
+      deleteKeep(keep) {
+        if (keep.userId == this.user.id) {
+          this.$store.dispatch("deleteKeep", keep);
+        }
       }
     }
   };
