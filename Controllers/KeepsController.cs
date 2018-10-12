@@ -22,11 +22,12 @@ namespace keepr.Controllers
       return _repo.GetAll();
     }
 
-    // [HttpGet("{userId}")]
-    // public IEnumerable<Keep> GetById([FromRoute]string userId)
-    // {
-    //   return _repo.GetById(userId);
-    // }
+    [HttpGet("{userId}")]
+    public IEnumerable<Keep> GetById(string userId)
+    {
+      userId = HttpContext.User.Identity.Name;
+      return _repo.GetById(userId);
+    }
 
     // [Authorize] do I want this?
     [HttpPost]

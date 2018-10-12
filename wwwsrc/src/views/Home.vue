@@ -103,12 +103,9 @@
     },
     mounted() {
       this.$store.dispatch("getKeeps");
-    },
-    mounted() {
       this.$store.dispatch("getVaultKeeps");
-    },
-    mounted() {
       this.$store.dispatch("getUserVaults");
+      document.body.classList.remove('modal-open')
     },
     data() {
       return {

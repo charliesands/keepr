@@ -41,10 +41,10 @@ namespace keepr.Controllers
       throw new System.Exception("Invalid VaultKeep");
     }
 
-    [HttpDelete("{id}")]
-    public void Delete(int id)
+    [HttpDelete("vaults/{vaultId}/keeps/{keepId}")]
+    public void Delete(int vaultId, int keepId)
     {
-      _repo.Delete(id);
+      _repo.Delete(vaultId, keepId);
     }
 
   }

@@ -44,7 +44,7 @@
         <button type="button" class="btn btn-primary" @click="addShare(vk)">Share</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#vk'+vk.id" @click="viewKeep(vk)">View</button>
         <!-- <button type="button" class="btn btn-primary">Keeps</button> -->
-        <button type="button" class="btn btn-danger" @click="deleteVaultKeep(vk)">Remove</button>
+        <button type="button" class="btn btn-danger" @click="deleteVaultKeep(vk.id)">Remove</button>
 
 
         <div class="modal fade" :id="'vk'+vk.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -72,6 +72,50 @@
           </div>
         </div>
       </div>
+      <div class="col-12">
+        <h2>Your Keeps</h2>
+      </div>
+      <div v-for="uk in userKeeps" :key="uk._id" class="col-3">
+        <div @click="viewKeep(uk)" data-toggle="modal" :data-target="'#uk'+uk.id">
+          <img :src="uk.img">
+        </div>
+        <div>
+          <h3> {{uk.name}}</h3>
+        </div>
+        <div>
+          shares:{{uk.shares}}views:{{uk.views}}keeps:{{uk.keeps}}
+        </div>
+        <button type="button" class="btn btn-primary" @click="addShare(uk)">Share</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" :data-target="'#uk'+uk.id" @click="viewKeep(uk)">View</button>
+        <!-- <button type="button" class="btn btn-primary">Keep</button> -->
+        <!-- <button class="btn btn-danger" @click="deleteKeep(uk)">Delete</button> -->
+        <div class="modal fade" :id="'uk'+uk.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{uk.name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <img :src="uk.img">
+                </div>
+                <div>
+                  {{uk.description}}
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </template>
@@ -85,7 +129,9 @@
       }
     },
     mounted() {
-      this.$store.dispatch("getVaultKeeps");
+      this.$store.dispatch("getUserVaults");
+      this.$store.dispatch("getUserKeeps");
+      document.body.classList.remove('modal-open')
     },
     computed: {
       user() {
@@ -99,6 +145,9 @@
       },
       vaults() {
         return this.$store.state.vaults;
+      },
+      userKeeps() {
+        return this.$store.state.userKeeps;
       }
     },
     methods: {
@@ -119,9 +168,20 @@
       logout() {
         this.$store.dispatch("logout")
       },
-      deleteVaultKeep(vk) {
-        debugger
-        this.$store.dispatch("deleteVaultKeep", vk.id)
+      deleteVaultKeep(keepId) {
+        this.$store.dispatch("deleteVaultKeep", { keepId: keepId, vaultId: this.chosen })
+      },
+      addShare(keep) {
+        keep.shares++
+        this.$store.dispatch("updateKeep", keep)
+      },
+      viewKeep(keep) {
+        keep.views++
+        this.$store.dispatch("updateKeep", keep)
+      },
+      deleteKeep(uk) {
+        // if (uk.userId == this.user.id) 
+        this.$store.dispatch("deleteKeep", uk);
       }
     }
   }

@@ -69,9 +69,9 @@ namespace keepr.Repositories
       return vaultkeep;
     }
 
-    public int Delete(int id)
+    public int Delete(int vaultId, int keepId)
     {
-      return _db.Execute("DELETE FROM vaultkeeps WHERE id = @id", new { id });
+      return _db.Execute("DELETE FROM vaultkeeps WHERE (keepId = @keepId) AND ( vaultId = @vaultId);", new { vaultId, keepId });
     }
 
   }
