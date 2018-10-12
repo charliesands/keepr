@@ -22,9 +22,9 @@ namespace keepr.Repositories
     }
 
     //GET Keep BY ID
-    public Keep GetById(int id)
+    public Keep GetById(string userId)
     {
-      return _db.Query<Keep>("SELECT * FROM keeps WHERE id = @id", new { id }).FirstOrDefault();
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE id = @id", new { userId }).FirstOrDefault();
     }
 
     //CREATE KEEP

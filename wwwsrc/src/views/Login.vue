@@ -121,13 +121,6 @@
 <script>
     export default {
         name: "login",
-        mounted() {
-            //checks for valid session
-            this.$store.dispatch("authenticate");
-        },
-        mounted() {
-            this.$store.dispatch("getKeeps");
-        },
         data() {
             return {
                 loginForm: true,
@@ -143,13 +136,11 @@
             };
         },
         mounted() {
+            //checks for valid session
+            this.$store.dispatch("authenticate");
+        },
+        mounted() {
             this.$store.dispatch("getKeeps");
-        },
-        mounted() {
-            this.$store.dispatch("getVaultKeeps");
-        },
-        mounted() {
-            this.$store.dispatch("getUserVaults");
         },
         computed: {
             keeps() {
